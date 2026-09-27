@@ -1,0 +1,26 @@
+{
+  "name": "@splitline/demo",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --port 43124 --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --port 43124 --host 0.0.0.0",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/node": "11.1.6",
+    "@splitline/astro": "workspace:*",
+    "@splitline/client": "workspace:*",
+    "@splitline/core": "workspace:*",
+    "@splitline/edge": "workspace:*",
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^7.3.5",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.3"
+  }
+}

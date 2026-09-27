@@ -1,0 +1,19 @@
+{
+  "name": "@splitline/store",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@splitline/core": "workspace:*",
+    "@supabase/supabase-js": "^2.98.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}

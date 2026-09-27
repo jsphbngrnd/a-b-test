@@ -1,0 +1,15 @@
+node_modules
+.pnpm-store
+dist
+.next
+.astro
+.sanity
+.env
+.env.local
+*.log
+data/
+.DS_Store
+coverage
+.vercel
+tsconfig.tsbuildinfo
+.turbo

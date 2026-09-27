@@ -1,0 +1,79 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  variant?: string | null;
+  preview?: boolean;
+  error?: string | null;
+  visitorId?: string;
+  experimentLabel?: string;
+  dashboardUrl: string;
+}
+
+const { title, variant, preview, error, visitorId, experimentLabel, dashboardUrl } = Astro.props;
+const shortVisitor = visitorId ? visitorId.slice(0, 8) : "new";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,640&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="Northline is the close workspace for finance teams. This demo assigns the homepage hero at the edge with Splitline."
+    />
+  </head>
+  <body data-variant={variant ?? "control"} class="min-h-screen bg-ink text-cream antialiased">
+    <div class="border-b border-line bg-panel/80">
+      <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-2 text-sm text-mist sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>
+          <span class="font-medium text-cream">Splitline demo</span>
+          <span class="mx-2 text-line">/</span>
+          {experimentLabel ?? "No experiment on this page"}
+          {variant ? <span class="ml-2 rounded-full bg-ink px-2 py-0.5 text-xs text-[var(--accent)]">{preview ? "Preview" : "Assigned"} · {variant}</span> : null}
+          <span class="ml-2 hidden font-mono text-xs text-mist sm:inline">visitor {shortVisitor}</span>
+        </p>
+        <p class="flex flex-wrap gap-x-3 gap-y-1">
+          <a class="underline decoration-line underline-offset-4 hover:text-cream" href="/?sl_preview=homepage-hero:control">Control</a>
+          <a class="underline decoration-line underline-offset-4 hover:text-cream" href="/?sl_preview=homepage-hero:variant_b">Variant B</a>
+          <a class="underline decoration-line underline-offset-4 hover:text-cream" href="/?sl_preview=off">My assignment</a>
+          <a class="underline decoration-line underline-offset-4 hover:text-cream" href="/reset">New visitor</a>
+          <a class="underline decoration-line underline-offset-4 hover:text-cream" href={dashboardUrl}>Dashboard</a>
+        </p>
+      </div>
+    </div>
+    {error ? (
+      <div class="bg-[#6e2e24] px-4 py-3 text-sm text-cream sm:px-6">
+        The experiment config didn’t load, so this page is showing the control. {error}
+      </div>
+    ) : null}
+    <header class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-5 sm:px-6">
+      <a href="/" class="font-serif text-2xl tracking-tight">Northline</a>
+      <nav class="flex items-center gap-4 text-sm text-mist">
+        <a class="hover:text-cream" href="/#product">Product</a>
+        <a class="hover:text-cream" href="/pricing">Pricing</a>
+        <a class="hidden hover:text-cream sm:inline" href="/#walkthrough">Customers</a>
+        <a class="rounded-full bg-[var(--accent)] px-3 py-1.5 font-medium text-ink hover:opacity-90" href="/#walkthrough">Book a walkthrough</a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="mt-20 border-t border-line">
+      <div class="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-mist sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <p>Northline is a fictional company used to show Splitline. The variant on this page was chosen before the HTML was sent.</p>
+        <a class="text-cream underline decoration-line underline-offset-4" href={dashboardUrl}>View the experiment</a>
+      </div>
+    </footer>
+    <script>
+      import "../scripts/track.ts";
+    </script>
+  </body>
+</html>

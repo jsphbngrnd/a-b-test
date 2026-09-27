@@ -1,0 +1,22 @@
+{
+  "name": "@splitline/sanity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "sanity": "^6"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "react": "^19.2.8",
+    "sanity": "^6.16.0",
+    "typescript": "^5.8.3"
+  }
+}

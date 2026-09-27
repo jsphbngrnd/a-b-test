@@ -1,0 +1,16 @@
+---
+import { getVariant } from "./index";
+
+interface Props {
+  experiment: string;
+  locals: { splitline?: { assignments: Record<string, string> } };
+  class?: string;
+}
+
+const { experiment, locals, class: className } = Astro.props;
+const variant = getVariant(locals, experiment) ?? "control";
+---
+
+<div class={className} data-splitline-experiment={experiment} data-splitline-variant={variant}>
+  <slot name={variant} />
+</div>

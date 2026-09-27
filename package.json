@@ -1,0 +1,20 @@
+{
+  "name": "splitline",
+  "private": true,
+  "packageManager": "pnpm@10.33.3",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @splitline/dashboard --filter @splitline/demo dev",
+    "dev:dashboard": "pnpm --filter @splitline/dashboard dev",
+    "dev:demo": "pnpm --filter @splitline/demo dev",
+    "dev:studio": "pnpm --filter @splitline/studio dev",
+    "test": "vitest run",
+    "typecheck": "pnpm -r --if-present typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
