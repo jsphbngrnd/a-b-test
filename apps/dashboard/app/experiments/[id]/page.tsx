@@ -24,7 +24,7 @@ export default async function ExperimentPage({ params }: { params: Promise<{ id:
     <div className="space-y-10">
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <h1 className="font-serif text-4xl">{experiment.name}</h1>
+          <h1 className="text-4xl font-bold">{experiment.name}</h1>
           <StatusBadge status={experiment.status} />
         </div>
         <p className="max-w-2xl text-sm leading-6 text-muted-foreground">{experiment.description}</p>
@@ -47,7 +47,7 @@ export default async function ExperimentPage({ params }: { params: Promise<{ id:
       </div>
       <ResultsView results={results} />
       <section className="space-y-4">
-        <h2 className="font-serif text-2xl">Content and weights</h2>
+        <h2 className="text-2xl font-bold">Content and weights</h2>
         <p className="text-sm text-muted-foreground">
           Weight changes apply to new visitors. People who already have a signed assignment keep their variant.
         </p>

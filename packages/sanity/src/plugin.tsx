@@ -3,7 +3,7 @@ import { ExperimentInspector } from "./inspector";
 import { VariantsInput } from "./variants-input";
 
 export type SplitlineOptions = {
-  /** Origin of the Splitline dashboard, without a trailing slash. */
+  /** Origin of the experiments dashboard, without a trailing slash. */
   apiOrigin?: string;
   apiKey?: string;
 };
@@ -19,7 +19,7 @@ export function experimentVariants(options: {
     title: options.title ?? "Experiment variants",
     description:
       options.description ??
-      "Control and challenger content. Splitline serves one of these per visitor, at the edge, with no client-side swap.",
+      "Control and challenger content. One of these is served per visitor, at the edge, with no client-side swap.",
     type: "object",
     components: { input: VariantsInput },
     fields: [
@@ -27,7 +27,7 @@ export function experimentVariants(options: {
         name: "experimentKey",
         title: "Experiment key",
         type: "string",
-        description: "Matches the key in the Splitline dashboard, for example homepage-hero.",
+        description: "Matches the key in the experiments dashboard, for example homepage-hero.",
       }),
       defineField({
         name: "variants",

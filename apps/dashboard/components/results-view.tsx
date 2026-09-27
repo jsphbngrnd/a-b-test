@@ -8,7 +8,7 @@ export function ResultsView({ results }: { results: ExperimentResults }) {
   return (
     <section className="space-y-4">
       <div>
-        <h2 className="font-serif text-2xl">Results</h2>
+        <h2 className="text-2xl font-bold">Results</h2>
         <p className="text-sm text-muted-foreground">
           Primary goal: <span className="font-medium text-foreground">{results.goalEventName}</span>. Rates use the daily
           rollup, not a scan of raw events. The call uses an O’Brien–Fleming boundary so early checks stay conservative.
@@ -25,7 +25,7 @@ export function ResultsView({ results }: { results: ExperimentResults }) {
             {results.variants.map((variant) => (
               <article key={variant.variantId} className="rounded-xl border border-border bg-card p-4">
                 <p className="text-sm text-muted-foreground">{variant.name}</p>
-                <p className="mt-1 font-serif text-4xl">{percent(variant.conversionRate)}</p>
+                <p className="mt-1 text-4xl font-bold">{percent(variant.conversionRate)}</p>
                 <p className="mt-2 text-sm text-muted-foreground">
                   {compact(variant.conversions)} conversions · {compact(variant.exposures)} exposures
                 </p>
@@ -68,7 +68,7 @@ export function ResultsView({ results }: { results: ExperimentResults }) {
                         <div
                           key={variant.variantId}
                           title={`${variant.variantKey}: ${point.exposures} exposures, ${point.conversions} conversions`}
-                          className={variantIndex === 0 ? "w-2 rounded-sm bg-foreground/70" : "w-2 rounded-sm bg-copper"}
+                          className={variantIndex === 0 ? "w-2 rounded-sm bg-foreground" : "w-2 rounded-sm bg-primary"}
                           style={{ height }}
                         />
                       );

@@ -104,7 +104,7 @@ export function ExperimentForm({ experiment }: { experiment?: Experiment }) {
       <div className="space-y-4">
         <div className="flex items-end justify-between gap-3">
           <div>
-            <h2 className="font-serif text-2xl">Variants</h2>
+            <h2 className="text-2xl font-bold">Variants</h2>
             <p className="text-sm text-muted-foreground">
               Preview copy is what the demo renders until a Sanity project is connected. In Studio, the same fields live on the experiment variants input.
             </p>

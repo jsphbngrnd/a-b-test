@@ -76,8 +76,8 @@ describe("file store", () => {
 
   it("authenticates the seeded demo key and not a revoked key", async () => {
     const db = store();
-    expect((await db.authenticate("sl_test_northline_demo"))?.scopes).toContain("events:write");
+    expect((await db.authenticate("sl_test_demo_key"))?.scopes).toContain("events:write");
     await db.revokeKey("key_demo");
-    expect(await db.authenticate("sl_test_northline_demo")).toBeNull();
+    expect(await db.authenticate("sl_test_demo_key")).toBeNull();
   });
 });

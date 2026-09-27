@@ -1,6 +1,6 @@
-# Splitline
+# Edge A/B testing
 
-Edge A/B testing for Astro and Sanity sites on Vercel. Middleware assigns each visitor a variant and sets a signed cookie before any HTML is sent, so the page does not flicker between versions.
+A/B testing for Astro and Sanity sites on Vercel. Middleware assigns each visitor a variant and sets a signed cookie before any HTML is sent, so the page does not flicker between versions.
 
 This repo is a local, runnable slice of that product:
 
@@ -9,7 +9,7 @@ This repo is a local, runnable slice of that product:
 - `@splitline/sanity` adds an experiment-variants field and a document inspector for Sanity Studio.
 - `@splitline/client` sends exposure and conversion events.
 - The Next.js dashboard creates and pauses experiments, shows a two-proportion z-test with an O’Brien–Fleming boundary, and stores API keys.
-- The Astro demo is a Northline marketing site whose homepage hero is the running experiment. Pages are server-rendered so the variant is chosen on each request.
+- The Astro demo is a small experiment preview. The first page is the running test. Pages are server-rendered so the variant is chosen on each request.
 
 Stats are frequentist. A multi-armed bandit is out of scope.
 
@@ -25,7 +25,7 @@ pnpm dev
 - Dashboard: http://127.0.0.1:43123
 - Demo site: http://127.0.0.1:43124
 
-`pnpm dev` starts both. `pnpm dev:dashboard` and `pnpm dev:demo` start one. No accounts or API keys are required. The dashboard seeds a Northline workspace on first launch (Starter plan, one running hero test, one paused pricing test, one draft). Data is written to `apps/dashboard/data/splitline.json`.
+`pnpm dev` starts both. `pnpm dev:dashboard` and `pnpm dev:demo` start one. No accounts or API keys are required. The dashboard seeds a local workspace on first launch (Starter plan, one running test, one paused test, one draft). Data is written to `apps/dashboard/data/splitline.json`.
 
 Open the demo, then refresh the homepage experiment in the dashboard. The middleware records an exposure. The hero button records a `cta_click` conversion, which is the experiment’s goal. The walkthrough form records `form_submit`, which is stored but not used in the significance test.
 
@@ -49,7 +49,7 @@ Defaults are enough for the demo. Copy `.env.example` when you want to point at 
 | `SPLITLINE_DATA_PATH` | dashboard | `apps/dashboard/data/splitline.json` |
 | `SPLITLINE_CONFIG_URL` | demo middleware | `http://127.0.0.1:43123/api/v1/config` |
 | `SPLITLINE_EVENTS_URL` | demo | `http://127.0.0.1:43123/api/v1/events` |
-| `SPLITLINE_API_KEY` | demo event writes | `sl_test_northline_demo` |
+| `SPLITLINE_API_KEY` | demo event writes | `sl_test_demo_key` |
 | `SPLITLINE_ALLOW_PREVIEW` | demo | `1` |
 | `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` | dashboard | unset, so the JSON file is used |
 | `EDGE_CONFIG`, `EDGE_CONFIG_ID`, `VERCEL_API_TOKEN` | dashboard sync | unset; the config endpoint still serves |
@@ -83,7 +83,7 @@ The edge helper reads a config URL, or Vercel Edge Config when `EDGE_CONFIG` is 
 
 ## Sanity
 
-`apps/studio` is a Northline Studio with the plugin installed. The hero field is built with `experimentVariants()`. The document inspector lists experiments whose variant Sanity document id matches the open document, or whose key appears in the document.
+`apps/studio` is a Studio with the plugin installed. The hero field is built with `experimentVariants()`. The document inspector lists experiments whose variant Sanity document id matches the open document, or whose key appears in the document.
 
 ```bash
 # requires SANITY_STUDIO_PROJECT_ID

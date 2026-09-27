@@ -9,7 +9,7 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-4xl">Settings</h1>
+        <h1 className="text-4xl font-bold">Settings</h1>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
           Sanity and Vercel ids are stored with the workspace. They do not connect by themselves — Studio and Edge Config use the environment variables in .env.example.
         </p>

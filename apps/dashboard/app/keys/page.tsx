@@ -8,7 +8,7 @@ export default async function KeysPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-4xl">API keys</h1>
+        <h1 className="text-4xl font-bold">API keys</h1>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
           The demo site uses a write-only key to record exposures and conversions. Config reads are open in this local build because the variant copy is already in the HTML.
         </p>

@@ -105,7 +105,7 @@ export function KeysManager({ keys }: { keys: PublicApiKey[] }) {
           <DialogHeader>
             <DialogTitle>Copy this key now</DialogTitle>
             <DialogDescription>
-              Splitline stores only a hash. This is the only time the full key is shown.
+              Only a hash is stored. This is the only time the full key is shown.
             </DialogDescription>
           </DialogHeader>
           <Input readOnly value={plaintext ?? ""} className="font-mono text-xs" />

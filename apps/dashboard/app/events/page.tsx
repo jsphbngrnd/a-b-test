@@ -17,7 +17,7 @@ export default async function EventsPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="font-serif text-4xl">Events</h1>
+        <h1 className="text-4xl font-bold">Events</h1>
         <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
           Exposures and conversions accepted by the ingestion endpoint. Duplicates for the same visitor are dropped, so a refresh does not inflate the rollup.
         </p>
@@ -35,9 +35,9 @@ export default async function EventsPage({
       </div>
       {events.length === 0 ? (
         <div className="rounded-xl border border-dashed border-border bg-card px-4 py-10">
-          <h2 className="font-serif text-2xl">No events for this view</h2>
+          <h2 className="text-2xl font-bold">No events for this view</h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            Open the Northline demo, or send a POST to /api/v1/events with the demo key, and they will land here.
+            Open the demo, or send a POST to /api/v1/events with the demo key, and they will land here.
           </p>
         </div>
       ) : (

@@ -29,13 +29,13 @@ export function ExperimentInspector(
       signal: controller.signal,
     })
       .then(async (response) => {
-        if (!response.ok) throw new Error(`Splitline responded ${response.status}.`);
+        if (!response.ok) throw new Error(`The experiments API responded ${response.status}.`);
         return (await response.json()) as { experiments: ExperimentSummary[] };
       })
       .then((body) => setExperiments(body.experiments))
       .catch((reason: unknown) => {
         if (controller.signal.aborted) return;
-        setError(reason instanceof Error ? reason.message : "Splitline could not be reached.");
+        setError(reason instanceof Error ? reason.message : "The experiments API could not be reached.");
       });
     return () => controller.abort();
   }, [keySignature, props.apiKey, props.apiOrigin, props.documentId]);
@@ -43,14 +43,14 @@ export function ExperimentInspector(
   return (
     <div style={{ padding: 16, display: "grid", gap: 12 }}>
       <div>
-        <strong>Splitline</strong>
+        <strong>Experiments</strong>
         <p style={{ margin: "6px 0 0", fontSize: 13, opacity: 0.75 }}>
           Experiments that reference this document, or that use an experiment key found in its fields.
         </p>
       </div>
       {error ? (
         <div style={{ padding: 12, border: "1px solid #9f2d2d", borderRadius: 8 }}>
-          <strong>Couldn’t reach Splitline</strong>
+          <strong>Couldn’t reach the experiments API</strong>
           <p style={{ margin: "6px 0" }}>{error}</p>
           <p style={{ margin: 0, fontSize: 13, opacity: 0.75 }}>
             The dashboard should be running at {props.apiOrigin}. You can change apiOrigin in the plugin options.
@@ -65,7 +65,7 @@ export function ExperimentInspector(
         </p>
       ) : null}
       {experiments?.map((experiment) => (
-        <div key={experiment.id} style={{ padding: 12, border: "1px solid #e4d9cc", borderRadius: 8 }}>
+        <div key={experiment.id} style={{ padding: 12, border: "1px solid #cfcfcf", borderRadius: 8 }}>
           <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
             <strong>{experiment.name}</strong>
             <span>{experiment.status}</span>

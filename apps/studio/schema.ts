@@ -3,7 +3,7 @@ import { experimentVariants } from "@splitline/sanity";
 
 export const marketingPage = defineType({
   name: "marketingPage",
-  title: "Marketing page",
+  title: "Page",
   type: "document",
   fields: [
     defineField({ name: "title", title: "Title", type: "string", validation: (rule) => rule.required() }),

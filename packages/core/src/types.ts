@@ -48,5 +48,5 @@ export const VISITOR_COOKIE = "sl_vid";
 export const ASSIGNMENT_COOKIE = "sl_asg";
 export const PREVIEW_COOKIE = "sl_preview";
 
-export const DEMO_API_KEY = "sl_test_northline_demo";
+export const DEMO_API_KEY = "sl_test_demo_key";
 export const DEV_SIGNING_SECRET = "splitline-dev-secret";

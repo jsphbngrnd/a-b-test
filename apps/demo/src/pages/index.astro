@@ -2,15 +2,18 @@
 import Experiment from "@splitline/astro/Experiment.astro";
 import { getVariant, getVariantPayload, shouldTrack } from "@splitline/astro";
 import { DEMO_API_KEY } from "@splitline/core";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
 import Base from "../layouts/Base.astro";
 
 const locals = Astro.locals;
 const variant = getVariant(locals, "homepage-hero");
 const payload = getVariantPayload(locals.splitline?.config, "homepage-hero", variant) ?? {
-  headline: "Close the books without the scramble.",
-  subhead:
-    "Northline keeps the close calendar, reconciliations, and the audit trail in one workspace, so controllers stop chasing spreadsheets the week after month-end.",
-  cta: "See the close calendar",
+  headline: "Control headline",
+  subhead: "This is the original version of the page.",
+  cta: "Continue",
 };
 const dashboard = import.meta.env.PUBLIC_DASHBOARD_URL || "http://127.0.0.1:43123";
 const eventsUrl = process.env.SPLITLINE_EVENTS_URL ?? "http://127.0.0.1:43123/api/v1/events";
@@ -22,11 +25,10 @@ const tracker = {
   variantKey: variant,
   track: shouldTrack(locals, "homepage-hero"),
 };
-const companies = ["Halcyon", "Bracken", "Fieldwork", "Lumen & Co", "Portico"];
 ---
 
 <Base
-  title="Northline — close the books without the scramble"
+  title="First page"
   variant={variant}
   preview={locals.splitline?.preview}
   error={locals.splitline?.error}
@@ -35,78 +37,49 @@ const companies = ["Halcyon", "Bracken", "Fieldwork", "Lumen & Co", "Portico"];
   dashboardUrl={`${dashboard}/experiments/exp_homepage_hero`}
 >
   <script id="splitline-state" type="application/json" set:html={JSON.stringify(tracker)} />
-  <main>
-    <section class="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-8 sm:px-6 lg:grid-cols-[1.3fr_0.7fr] lg:items-end lg:pt-16">
-      <div>
-        <p class="text-sm font-medium uppercase tracking-[0.18em] text-[var(--accent)]">Close workspace</p>
-        <h1 class="mt-4 max-w-xl font-serif text-5xl leading-[1.05] tracking-tight sm:text-6xl">{payload.headline}</h1>
-        <p class="mt-6 max-w-xl text-lg leading-8 text-mist">{payload.subhead}</p>
-        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a data-splitline-goal href="#walkthrough" class="rounded-full bg-[var(--accent)] px-5 py-3 text-center font-medium text-ink">{payload.cta}</a>
-          <a href="/pricing" class="rounded-full border border-line px-5 py-3 text-center text-cream">Look at pricing</a>
+  <main class="mx-auto grid max-w-3xl gap-6 px-4 pb-12">
+    <Card>
+      <CardHeader>
+        <CardTitle class="text-3xl font-bold">{payload.headline}</CardTitle>
+      </CardHeader>
+      <CardContent class="grid gap-4">
+        <p class="text-base leading-7">{payload.subhead}</p>
+        <div class="flex flex-col gap-3 sm:flex-row">
+          <Button href="#response" data-splitline-goal>
+            {payload.cta}
+          </Button>
+          <Button variant="outline" href="/pricing">
+            Second page
+          </Button>
         </div>
-      </div>
-      <aside class="rounded-3xl border border-line bg-panel p-6">
-        <p class="text-sm text-mist">This month’s close</p>
-        <p class="mt-3 font-serif text-4xl">Fri, 4:10pm</p>
-        <dl class="mt-6 space-y-3 text-sm">
-          <div class="flex justify-between gap-4 border-b border-line pb-3"><dt class="text-mist">Entities tied out</dt><dd>18 / 18</dd></div>
-          <div class="flex justify-between gap-4 border-b border-line pb-3"><dt class="text-mist">Open commentary</dt><dd>3 notes</dd></div>
-          <div class="flex justify-between gap-4"><dt class="text-mist">Sign-off</dt><dd class="text-[var(--accent)]">Waiting on Maya</dd></div>
-        </dl>
-      </aside>
-    </section>
-
-    <section class="border-y border-line">
-      <div class="mx-auto flex max-w-6xl flex-wrap items-center gap-x-8 gap-y-3 px-4 py-5 text-sm uppercase tracking-[0.16em] text-mist sm:px-6">
-        {companies.map((company) => <span>{company}</span>)}
-      </div>
-    </section>
-
-    <section id="product" class="mx-auto grid max-w-6xl gap-6 px-4 py-16 sm:px-6 md:grid-cols-3">
-      <article class="rounded-3xl border border-line p-6">
-        <h2 class="font-serif text-2xl">One checklist</h2>
-        <p class="mt-3 leading-7 text-mist">Tasks, owners, and the evidence behind each tie-out live on the entity, not in a side thread.</p>
-      </article>
-      <article class="rounded-3xl border border-line p-6">
-        <h2 class="font-serif text-2xl">Commentary that stays</h2>
-        <p class="mt-3 leading-7 text-mist">Controllers write the variance once. Next month it is still attached to the account.</p>
-      </article>
-      <article class="rounded-3xl border border-line p-6">
-        <h2 class="font-serif text-2xl">A calendar, not a scramble</h2>
-        <p class="mt-3 leading-7 text-mist">The close has a finish line. Northline shows what is blocking it, by day.</p>
-      </article>
-    </section>
-
-    <section class="mx-auto max-w-6xl px-4 sm:px-6">
-      <blockquote class="rounded-3xl bg-panel px-6 py-10 sm:px-10">
-        <p class="max-w-3xl font-serif text-3xl leading-snug">“We stopped treating the close like a fire drill. The week ends, and so does the workbook.”</p>
-        <footer class="mt-6 text-sm text-mist">Owen Park, controller at Bracken</footer>
-      </blockquote>
-    </section>
-
-    <section id="walkthrough" class="mx-auto grid max-w-6xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2">
-      <div>
-        <h2 class="font-serif text-4xl">Request a walkthrough</h2>
-        <p class="mt-4 leading-7 text-mist">Tell us which entities you close. We’ll come back with a single-cycle outline, not a deck.</p>
-        <Experiment experiment="homepage-hero" locals={locals} class="mt-6 block text-sm text-mist">
-          <p slot="control">You’re seeing the control headline.</p>
-          <p slot="variant_b">You’re seeing the Friday-close headline.</p>
+        <Experiment experiment="homepage-hero" locals={locals} class="text-sm text-muted-foreground">
+          <p slot="control">Showing the control variant.</p>
+          <p slot="variant_b">Showing variant B.</p>
         </Experiment>
-      </div>
-      <form data-splitline-form data-form-panel class="rounded-3xl border border-line bg-panel p-6">
-        <label class="block text-sm text-mist" for="name">Name</label>
-        <input id="name" name="name" required class="mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2 text-cream outline-none focus:border-[var(--accent)]" />
-        <label class="mt-4 block text-sm text-mist" for="work-email">Work email</label>
-        <input id="work-email" name="email" type="email" required class="mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2 text-cream outline-none focus:border-[var(--accent)]" />
-        <label class="mt-4 block text-sm text-mist" for="entities">Entities in a typical close</label>
-        <input id="entities" name="entities" inputmode="numeric" class="mt-1 w-full rounded-xl border border-line bg-ink px-3 py-2 text-cream outline-none focus:border-[var(--accent)]" placeholder="12" />
-        <button class="mt-6 w-full rounded-full bg-[var(--accent)] px-5 py-3 font-medium text-ink" type="submit">Send the request</button>
-      </form>
-      <div data-form-thanks hidden class="rounded-3xl border border-line bg-panel p-6 lg:col-start-2">
-        <h3 class="font-serif text-3xl">Request received.</h3>
-        <p class="mt-3 leading-7 text-mist">Maya’s team replies with a close-cycle outline. This submit was recorded as a form event, separate from the hero-button goal.</p>
-      </div>
-    </section>
+      </CardContent>
+    </Card>
+
+    <Card id="response">
+      <CardHeader>
+        <CardTitle class="text-2xl font-bold">Response</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form data-splitline-form data-form-panel class="grid gap-4">
+          <div class="grid gap-1.5">
+            <Label htmlFor="name">Name</Label>
+            <Input id="name" name="name" required />
+          </div>
+          <div class="grid gap-1.5">
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" name="email" type="email" required />
+          </div>
+          <Button type="submit">Send</Button>
+        </form>
+        <div data-form-thanks hidden>
+          <h2 class="text-2xl font-bold">Response recorded.</h2>
+          <p class="mt-2 text-sm text-muted-foreground">This submit is stored as a form event. It is not the goal used in the significance test.</p>
+        </div>
+      </CardContent>
+    </Card>
   </main>
 </Base>

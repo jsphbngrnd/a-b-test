@@ -27,7 +27,7 @@ export default async function ExperimentsPage({
     <div className="space-y-6">
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
         <div>
-          <h1 className="font-serif text-4xl">Experiments</h1>
+          <h1 className="text-4xl font-bold">Experiments</h1>
           <p className="mt-2 text-sm text-muted-foreground">Drafts stay out of the edge config’s assignment path until you start them.</p>
         </div>
         <Button asChild>
@@ -51,7 +51,7 @@ export default async function ExperimentsPage({
       </div>
       {experiments.length === 0 ? (
         <div className="rounded-xl border border-dashed border-border bg-card px-4 py-10">
-          <h2 className="font-serif text-2xl">{selected ? `No ${selected} experiments` : "No experiments yet"}</h2>
+          <h2 className="text-2xl font-bold">{selected ? `No ${selected} experiments` : "No experiments yet"}</h2>
           <p className="mt-2 text-sm text-muted-foreground">
             {selected ? "Try another status, or create a new draft." : "The first test can be a headline, a button, or a whole section."}
           </p>

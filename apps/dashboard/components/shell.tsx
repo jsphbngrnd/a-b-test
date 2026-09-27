@@ -26,8 +26,8 @@ export function Shell({ orgName, children }: { orgName: string; children: React.
     <div className="min-h-screen bg-background md:grid md:grid-cols-[240px_1fr]">
       <aside className="hidden bg-sidebar text-sidebar-foreground md:flex md:flex-col md:border-r md:border-sidebar-border">
         <div className="px-5 py-6">
-          <p className="font-serif text-2xl tracking-tight">Splitline</p>
-          <p className="mt-1 text-sm text-sidebar-foreground/70">{orgName}</p>
+          <p className="text-2xl font-bold tracking-tight">Experiments</p>
+          <p className="mt-1 text-sm text-sidebar-foreground">{orgName}</p>
         </div>
         <nav className="flex flex-1 flex-col gap-1 px-3">
           {links.map((link) => (
@@ -38,21 +38,21 @@ export function Shell({ orgName, children }: { orgName: string; children: React.
                 "rounded-lg px-3 py-2 text-sm",
                 active(pathname, link.href)
                   ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                  : "text-sidebar-foreground/80 hover:bg-sidebar-accent/70",
+                  : "text-sidebar-foreground hover:bg-sidebar-accent/70",
               )}
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <p className="px-5 py-6 text-xs leading-5 text-sidebar-foreground/60">
+        <p className="px-5 py-6 text-xs leading-5 text-sidebar-foreground">
           Edge assignment for Astro and Sanity. No flicker, because the variant is chosen before HTML is sent.
         </p>
       </aside>
       <div className="min-w-0">
         <header className="sticky top-0 z-20 flex items-center justify-between border-b border-border bg-background/90 px-4 py-3 backdrop-blur md:hidden">
           <div>
-            <p className="font-serif text-xl leading-none">Splitline</p>
+            <p className="text-xl font-bold leading-none">Experiments</p>
             <p className="text-xs text-muted-foreground">{orgName}</p>
           </div>
           <Sheet>
@@ -63,7 +63,7 @@ export function Shell({ orgName, children }: { orgName: string; children: React.
             </SheetTrigger>
             <SheetContent side="left" className="bg-sidebar text-sidebar-foreground">
               <SheetHeader>
-                <SheetTitle className="font-serif text-sidebar-foreground">Splitline</SheetTitle>
+                <SheetTitle className="font-bold text-sidebar-foreground">Experiments</SheetTitle>
               </SheetHeader>
               <nav className="flex flex-col gap-1 px-4">
                 {links.map((link) => (
@@ -72,7 +72,7 @@ export function Shell({ orgName, children }: { orgName: string; children: React.
                     href={link.href}
                     className={cn(
                       "rounded-lg px-3 py-2 text-sm",
-                      active(pathname, link.href) ? "bg-sidebar-accent" : "text-sidebar-foreground/80",
+                      active(pathname, link.href) ? "bg-sidebar-accent" : "text-sidebar-foreground",
                     )}
                   >
                     {link.label}

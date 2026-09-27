@@ -49,7 +49,7 @@ export function SettingsPanel({
         }}
       >
         <div className="sm:col-span-2">
-          <h2 className="font-serif text-2xl">Workspace</h2>
+          <h2 className="text-2xl font-bold">Workspace</h2>
           <p className="text-sm text-muted-foreground">
             Billing is not connected in this local build. The plan only enforces the concurrent-experiment and event
             limits described in the product spec.
@@ -85,7 +85,7 @@ export function SettingsPanel({
         </div>
         <div className="sm:col-span-2">
           {error ? <p className="mb-2 text-sm text-destructive">{error}</p> : null}
-          {notice ? <p className="mb-2 text-sm text-signal">{notice}</p> : null}
+          {notice ? <p className="mb-2 text-sm text-primary">{notice}</p> : null}
           <Button type="submit" disabled={pending}>
             {pending ? "Saving…" : "Save workspace"}
           </Button>
@@ -93,7 +93,7 @@ export function SettingsPanel({
       </form>
 
       <section className="space-y-3 rounded-xl border border-border bg-card p-4">
-        <h2 className="font-serif text-2xl">Data store</h2>
+        <h2 className="text-2xl font-bold">Data store</h2>
         <p className="text-sm text-muted-foreground">
           {backend === "supabase"
             ? "Connected to the Supabase project in SUPABASE_URL. Event and experiment rows live there."
@@ -116,7 +116,7 @@ export function SettingsPanel({
 
       <section className="space-y-4">
         <div>
-          <h2 className="font-serif text-2xl">Teammates</h2>
+          <h2 className="text-2xl font-bold">Teammates</h2>
           <p className="text-sm text-muted-foreground">
             Invites are stored for this workspace. Email delivery ships with hosted accounts, so nobody is emailed from this local build.
           </p>

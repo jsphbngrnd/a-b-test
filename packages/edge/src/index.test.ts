@@ -34,11 +34,11 @@ const secret = DEV_SIGNING_SECRET;
 
 describe("decide", () => {
   it("keeps a signed assignment when the request comes back", async () => {
-    const first = await decide(new Request("https://northline.example/"), config, {
+    const first = await decide(new Request("https://example.com/"), config, {
       signingSecret: secret,
     });
     const cookie = first.cookies.map((item) => `${item.name}=${item.value}`).join("; ");
-    const second = await decide(new Request("https://northline.example/", { headers: { cookie } }), config, {
+    const second = await decide(new Request("https://example.com/", { headers: { cookie } }), config, {
       signingSecret: secret,
     });
     expect(second.visitorId).toBe(first.visitorId);
@@ -49,7 +49,7 @@ describe("decide", () => {
 
   it("serves a preview without tracking it", async () => {
     const decision = await decide(
-      new Request("https://northline.example/?sl_preview=homepage-hero:variant_b"),
+      new Request("https://example.com/?sl_preview=homepage-hero:variant_b"),
       config,
       { signingSecret: secret, allowPreview: true },
     );
@@ -69,7 +69,7 @@ describe("decide", () => {
         },
       ],
     };
-    const decision = await decide(new Request("https://northline.example/"), completed, {
+    const decision = await decide(new Request("https://example.com/"), completed, {
       signingSecret: secret,
     });
     expect(decision.assignments["homepage-hero"]).toBe("variant_b");

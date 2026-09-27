@@ -386,7 +386,7 @@ function load(filePath: string): State {
   try {
     const parsed = JSON.parse(readFileSync(filePath, "utf8")) as State;
     if (parsed.version !== 1 || !parsed.org || !parsed.experiments) {
-      throw new SplitlineError("The local Splitline data file is not a version this app can read.");
+      throw new SplitlineError("The local data file is not a version this app can read.");
     }
     return parsed;
   } catch (error) {

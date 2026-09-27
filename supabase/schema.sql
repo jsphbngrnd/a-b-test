@@ -102,4 +102,4 @@ alter table teammates enable row level security;
 alter table event_dedupe enable row level security;
 
 -- The dashboard connects with the service role, which bypasses RLS.
--- No anon policies are granted; visitor browsers talk to the Splitline API, not Postgres.
+-- No anon policies are granted; visitor browsers talk to the events API, not Postgres.
